@@ -1,6 +1,8 @@
+*hd5
 *fits
 *fits.gz
 *pos*csv
 code/*csv
 *db
 .DS_Store*
+*pem
