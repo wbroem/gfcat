@@ -1,3 +1,4 @@
 *pos*csv
 code/*csv
-code/*db
+*db
+.DS_Store*
