@@ -8,7 +8,9 @@ The GFCat project is mining the GALEX data for serendipitous variables observed 
 ---
 
 ### Some important caveats:
-* The contents of this repository are part of an ongoing research project. The form and function are generally limited to what is required for that project, and may not be appropriate for your project. Feedback is welcomed, but feature requests will probably not be honored.
+* The contents of this repository are part of an ongoing research project.
+* The form and function are generally limited to what is required for that project and may not be appropriate for your project.
+* Feedback is welcomed, but feature requests will probably not be honored.
 * The contents of this repository might change dramatically without notice.
 
 ---
