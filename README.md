@@ -3,7 +3,7 @@ The GFCat project is mining the GALEX data for serendipitous variables observed 
 
 **The first batch of primary output from this project---the 400 most significant variables in the data---[were presented at AAS 235](https://millionconcepts.com/aas235.html).**
 
-**A secondary output of this project that may be of general interest is a catalog of 120-second depth photometry for all "MIS style" observations collected by GALEX through GR7.** This repository currently contains that (>10Gb) catalog. The notebook in `code\00 - Example Workflow.ipynb` provides some guidance on how this catalog can be used.
+**A secondary output of this project that may be of general interest is a catalog of 120-second depth photometry for all "MIS style" observations collected by GALEX through GR7.** This repository currently contains that (>10Gb) catalog. The Jupyter notebook in `code\00 - Example Workflow.ipynb` provides some guidance on how this catalog can be used.
 
 ---
 
@@ -11,7 +11,9 @@ The GFCat project is mining the GALEX data for serendipitous variables observed 
 * The contents of this repository are part of an ongoing research project. The form and function are generally limited to what is required for that project, and may not be appropriate for your project. Feedback is welcomed, but feature requests will probably not be honored.
 * The contents of this repository might change dramatically without notice.
 
-### If you use the contents of this repository in your work, cite it with the Zenodo identifier as follows:
+---
+
+### If you use the contents of this repository in your work, cite it with the Zenodo identifier:
 **TO BE CREATED**
 
 #### Please also cite the gPhoton project on which this work is based:
