@@ -14,8 +14,7 @@ The GFCat project is mining the GALEX data for serendipitous variables observed 
 * The contents of this repository might change dramatically without notice.
 
 ---
-Several publications are in preparation. Prior to that, **if you use the contents of this repository in your research, cite it with the Zenodo identifier**:
-`TO BE CREATED`
+Several publications are in preparation. Prior to that, **if you use the contents of this repository in your research, cite it with the Zenodo identifier**: [![DOI](https://zenodo.org/badge/276954807.svg)](https://zenodo.org/badge/latestdoi/276954807)
 
 ***Please also cite the gPhoton project on which this work is based**:
 `Million, Chase, Scott W. Fleming, Bernie Shiao, Mark Seibert, Parke Loyd, Michael Tucker, Myron Smith, Randy Thompson, and Richard L. White. "gPhoton: The GALEX Photon Data Archive." The Astrophysical Journal 833, no. 2 (2016): 292.`
