@@ -1,0 +1,10 @@
+numpy
+pandas
+sqlalchemy
+photutils
+gPhoton
+astropy
+requests
+ffmpeg
+scipy
+sklearn
