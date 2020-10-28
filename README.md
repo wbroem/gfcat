@@ -14,7 +14,7 @@ The GFCat project is mining the GALEX data for serendipitous variables observed 
 * The contents of this repository might change dramatically without notice.
 
 ---
-Several publications on this work are in preparation. Prior to that, **if you use the contents of this repository in your work, cite it with the Zenodo identifier**:
+Several publications are in preparation. Prior to that, **if you use the contents of this repository in your research, cite it with the Zenodo identifier**:
 `TO BE CREATED`
 
 ***Please also cite the gPhoton project on which this work is based**:
@@ -24,4 +24,6 @@ Several publications on this work are in preparation. Prior to that, **if you us
 
 We are interested in collaborations, especially if they include funding, coauthorships, or doing neat things.
 
-This work was supported by NASA ADAP Grant 80NSSC18K0084. 
+---
+
+This work was supported by NASA ADAP Grant 80NSSC18K0084.

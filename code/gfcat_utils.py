@@ -75,6 +75,7 @@ def download_raw6(
         print("{fn} already exists.".format(fn=filepath))
         print("\tUse keyword `force` to re-download.")
         return filepath
+    print(f"Writing data to {filepath}")
     if not os.path.exists(os.path.dirname(filepath)):
         print("Creating {dirname}".format(dirname=os.path.dirname(filepath)))
         os.makedirs(os.path.dirname(filepath))
@@ -391,9 +392,10 @@ def make_images(
     imsz=[3200, 3200],
     data_directory="/Volumes/BigDataDisk/gPhotonData/GTDS",
     detrad_pix=350,
+    bins=["", 120],
 ):
     photonfile = "{data_directory}/e{eclipse}/e{eclipse}-{b}d.h5".format(
-        data_directory=data_directory, eclipse=eclipse, b="n" if band is "NUV" else "f"
+        data_directory=data_directory, eclipse=eclipse, b="n" if band=="NUV" else "f"
     )
 
     if os.path.exists(os.path.dirname(photonfile) + "/No{band}".format(band=band)):
@@ -426,7 +428,7 @@ def make_images(
         ).touch()
         return
 
-    for binsz in ["", 120]:
+    for binsz in bins:
         if not binsz:
             cntfilename = photonfile.replace(".h5", "-cnt.fits")
         else:
@@ -435,6 +437,7 @@ def make_images(
         tranges, exptimes = [], []
         image, flagmap, edgemap = [], [], []  # to try to recover some memory
         trange = [events["t"].min(), events["t"].max()]
+        print(f'\t[{trange[0]},{trange[1]}]')
         t0s = np.arange(trange[0], trange[1], binsz if binsz else trange[1] - trange[0])
         center_skypos = (
             events["ra"].min() + (events["ra"].max() - events["ra"].min()) / 2,
@@ -443,7 +446,7 @@ def make_images(
         wcs = make_wcs(center_skypos)
 
         for i, t0 in enumerate(t0s):
-            mc.print_inline("\tFrame {i} of {n}".format(i=i + 1, n=len(t0s)))
+            mc.print_inline("\tProcessing frame {i} of {n}".format(i=i + 1, n=len(t0s)))
             t1 = t0 + (binsz if binsz else trange[1] - trange[0])
             ix = np.where(
                 (events["t"] >= t0) & (events["t"] < t1) & (events["flags"] == 0)
@@ -451,7 +454,7 @@ def make_images(
             if not len(ix[0]):
                 continue
             tranges += [[t0, t1]]
-            coo = list(zip(events["ra"][ix[0]], events["dec"][ix[0]]))
+            coo = list(zip(events["ra"].iloc[ix[0]], events["dec"].iloc[ix[0]]))
             foc = wcs.sip_pix2foc(wcs.wcs_world2pix(coo, 1), 1)
             weights = 1.0 / events["response"][ix[0]]
             H, xedges, yedges = np.histogram2d(
@@ -461,6 +464,7 @@ def make_images(
                 range=([[0, imsz[0]], [0, imsz[1]]]),
                 weights=weights,
             )
+            foc = []
             if len(t0s) == 1:
                 image = H
             else:
@@ -545,7 +549,7 @@ def make_photometry(
     eclipse, band, rerun=False, data_directory="/Volumes/BigDataDisk/gPhotonData/GTDS"
 ):
     photonfile = "{data_directory}/e{eclipse}/e{eclipse}-{b}d.h5".format(
-        data_directory=data_directory, eclipse=eclipse, b="n" if band is "NUV" else "f"
+        data_directory=data_directory, eclipse=eclipse, b="n" if band=="NUV" else "f"
     )
     if os.path.exists(os.path.dirname(photonfile) + "/No{band}".format(band=band)):
         print("No data.")
@@ -639,7 +643,7 @@ def screen_variables(
     if ((obstype in ['AIS', 'NoData', 'GII', 'CAI', 'Unknown']) or (nlegs>0)):
         return []
     photonfile = "{data_directory}/e{eclipse}/e{eclipse}-{b}d.h5".format(
-        data_directory=data_directory, eclipse=eclipse, b="n" if band is "NUV" else "f"
+        data_directory=data_directory, eclipse=eclipse, b="n" if band=="NUV" else "f"
     )
     if not os.path.exists(os.path.dirname(photonfile)):
         print("No data directory for e{eclipse}.".format(eclipse=eclipse))
@@ -767,7 +771,7 @@ def test_photometry(
     data_directory="/Volumes/BigDataDisk/gPhotonData/GTDS",
 ):
     photonfile = "{data_directory}/e{eclipse}/e{eclipse}-{b}d.h5".format(
-        data_directory=data_directory, eclipse=eclipse, b="n" if band is "NUV" else "f"
+        data_directory=data_directory, eclipse=eclipse, b="n" if band=="NUV" else "f"
     )
     cntfilename = photonfile.replace(".h5", "-cnt.fits.gz")
     photomfile = cntfilename.replace("-cnt.fits.gz", "-photom.csv")
@@ -796,7 +800,7 @@ def test_photometry(
         skypos = (phot.iloc[n].ra, phot.iloc[n].dec)
         trange = [expt.t0.min(), expt.t1.max()]
         csvfile = (
-            qadir + "/" + "{n}_{b}d.csv".format(n=n, b="n" if band is "NUV" else "f")
+            qadir + "/" + "{n}_{b}d.csv".format(n=n, b="n" if band=="NUV" else "f")
         )
         out = gAperture(
             band,
@@ -827,12 +831,12 @@ def test_photometry(
 def varplot(eclipse, band):
     exptime = pd.read_csv(
         "/Volumes/BigDataDisk/gPhotonData/GTDS/e{e}/e{e}-{b}d-exptime.csv".format(
-            e=eclipse, b="n" if band is "NUV" else "f"
+            e=eclipse, b="n" if band=="NUV" else "f"
         )
     )
     photom = pd.read_csv(
         "/Volumes/BigDataDisk/gPhotonData/GTDS/e{e}/e{e}-{b}d-photom.csv".format(
-            e=eclipse, b="n" if band is "NUV" else "f"
+            e=eclipse, b="n" if band=="NUV" else "f"
         ),
         index_col="id",
     )
