@@ -14,7 +14,7 @@ The GFCat project is mining the GALEX data for serendipitous variables observed 
 * The contents of this repository might change dramatically without notice.
 
 ---
-Several publications are in preparation. Prior to that, **if you use the contents of this repository in your research, cite it with the Zenodo identifier**: `Million, Chase, Scott W. Fleming, "GFCat" [https://github.com/MillionConcepts/gfcat] (2020). [https://zenodo.org/badge/latestdoi/276954807].
+Several publications are in preparation. Prior to that, **if you use the contents of this repository in your research, cite it with the Zenodo identifier**: `Million, Chase, Scott W. Fleming, "GFCat" https://github.com/MillionConcepts/gfcat (2020). DOI:276954807.
 
 [![DOI](https://zenodo.org/badge/276954807.svg)](https://zenodo.org/badge/latestdoi/276954807)
 
